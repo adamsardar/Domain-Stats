@@ -1,0 +1,17 @@
+CombAbundanceInNCBIViruses
+CombAbundanceInViralData
+FamAbundanceInNCBIViruses
+FamAbundanceInViralData
+AllIncludeGenomes.dat
+ArcheaGenomes.dat
+DomainArchanalysis-AllVsAll.dat
+Families.dat
+NCBISuperFamiliesByViralDistinction.dat
+PlasmidInstanceNCBI.dat
+PlasmidSpeciesCombs.dat
+UniprotInstances.dat
+ViralInstanceCombs.dat
+ViralInstanceNCBI.dat
+vlSuperFamilieIDsByViralDistinction.dat
+vlSuperFamiliesByViralDistinction.dat
+DomainArchanalysis-Summary.csv

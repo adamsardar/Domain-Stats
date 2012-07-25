@@ -1,0 +1,10 @@
+Project : UniqueViralDomainPair
+
+This project aims to extract information from SUPERFAMILY regarding the
+number and distribution of viral domain pairs. Of main importance is the
+script DomainPaircompare.pl, which will compare sets of genomes and provide
+information regarding the distribution of one in the other.
+
+Scripts are written in Perl. There is a module in ../lib/Supfam for identifying 
+all domain pairs given an input list of domain architectures.
+
