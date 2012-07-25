@@ -8,7 +8,7 @@ StrainsDomArchSummary.pl<.pl>
 
  StrainsDomArchSummary.pl -gs 'genome strain to study'
 
-example:../StrainsDomArchSummary.pl -gs 'Escherichia coli'
+example: StrainsDomArchSummary.pl -gs 'Escherichia coli'
 
 =head1 SYNOPSIS
 
@@ -35,7 +35,7 @@ use warnings;
 
 # Add Local Library to LibPath
 #----------------------------------------------------------------------------------------------------------------
-use lib "/home/sardar/bin/perl-libs-custom";
+use lib "$ENV{HOME}/bin/perl-libs-custom";
 
 
 # CPAN Includes
@@ -48,7 +48,7 @@ B<Data::Dumper> Used for debug output.
 use Getopt::Long;                     #Deal with command line options
 use Pod::Usage;                       #Print a usage man page from the POD comments after __END__
 use Data::Dumper;                     #Allow easy print dumps of datastructures for debugging
-#use XML::Simple qw(:strict);          #Load a config file from the local directory
+
 use DBI;
 use Supfam::Utils;
 use Supfam::SQLFunc;
@@ -102,12 +102,12 @@ unless(scalar(@GenomesOfInterest)){
 
 #######Study domain combinations
 
-my $lencombquery = join ("' or len_comb.genome='", @GenomesOfInterest); $lencombquery = "(len_comb.genome='$lencombquery')";# An ugly way to make the query many genomes
+my $lencombquery = join ("' or len_supra.genome='", @GenomesOfInterest); $lencombquery = "(len_supra.genome='$lencombquery')";# An ugly way to make the query many genomes
 
 my $GenomeCombHash = {}; #Hash structure: $Hash->{genome}{comb}=frequency
 my $CombID2ArchDictionary = {};
 
-$sth=$dbh->prepare("SELECT genome, comb_id, comb FROM len_comb WHERE $lencombquery;");
+$sth=$dbh->prepare("SELECT len_supra.genome, len_supra.supra_id, comb_index.comb FROM len_supra JOIN comb_index ON len_supra.supra_id = comb_index.id WHERE $lencombquery AND len_supra.ascomb_prot_number > 0;");
 $sth->execute();
 
 while(my ($genome,$comb_id,$comb) = $sth->fetchrow_array()){
